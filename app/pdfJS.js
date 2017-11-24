@@ -15,8 +15,8 @@ const viewerBaseUrl = `${pdfjsBaseUrl}content/web/viewer.html`
 
 const onBeforeRequest = (details) => {
   const result = { resourceName: 'pdfjs' }
-  if (!(details.resourceType === 'mainFrame' &&
-    UrlUtil.isFileScheme(details.url) &&
+  if (details.resourceType != 'mainFrame' ||
+    !(UrlUtil.isFileScheme(details.url) &&
     UrlUtil.isFileType(details.url, 'pdf'))) {
     return result
   }
